@@ -1,0 +1,517 @@
+{
+  "info": {
+    "name": "Backend III - Sistema de Mocking",
+    "description": "Collection completa para testar todos os endpoints do sistema de mocking para usuários e pets",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "🏠 Endpoints Principais",
+      "description": "Endpoints básicos do sistema",
+      "item": [
+        {
+          "name": "GET - Página Inicial",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": ["{{baseUrl}}"],
+              "path": [""]
+            },
+            "description": "Endpoint raiz que mostra informações do sistema e lista de endpoints disponíveis"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "👥 Usuários (Users)",
+      "description": "Endpoints para gerenciamento de usuários",
+      "item": [
+        {
+          "name": "GET - Listar Todos os Usuários",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users"]
+            },
+            "description": "Busca todos os usuários cadastrados na base de dados"
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Buscar Usuário por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/users/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users", "{{userId}}"]
+            },
+            "description": "Busca um usuário específico pelo seu ID"
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Criar Novo Usuário",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"João\",\n  \"last_name\": \"Silva\",\n  \"email\": \"joao.silva@example.com\",\n  \"password\": \"senha123\",\n  \"role\": \"user\",\n  \"pets\": []\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users"]
+            },
+            "description": "Cria um novo usuário no sistema"
+          },
+          "response": []
+        },
+        {
+          "name": "PUT - Atualizar Usuário",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"João Atualizado\",\n  \"last_name\": \"Silva Santos\",\n  \"email\": \"joao.updated@example.com\",\n  \"role\": \"admin\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/users/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users", "{{userId}}"]
+            },
+            "description": "Atualiza os dados de um usuário existente"
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE - Deletar Usuário",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/users/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users", "{{userId}}"]
+            },
+            "description": "Remove um usuário do sistema"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🐾 Pets",
+      "description": "Endpoints para gerenciamento de pets",
+      "item": [
+        {
+          "name": "GET - Listar Todos os Pets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pets",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pets"]
+            },
+            "description": "Busca todos os pets cadastrados na base de dados"
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Buscar Pet por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pets/{{petId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pets", "{{petId}}"]
+            },
+            "description": "Busca um pet específico pelo seu ID"
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Criar Novo Pet",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rex\",\n  \"specie\": \"dog\",\n  \"birthDate\": \"2020-05-15T00:00:00.000Z\",\n  \"adopted\": false,\n  \"owner\": null,\n  \"image\": \"https://example.com/pet-image.jpg\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/pets",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pets"]
+            },
+            "description": "Cria um novo pet no sistema"
+          },
+          "response": []
+        },
+        {
+          "name": "PUT - Atualizar Pet",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rex Atualizado\",\n  \"specie\": \"dog\",\n  \"adopted\": true,\n  \"owner\": \"{{userId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/pets/{{petId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pets", "{{petId}}"]
+            },
+            "description": "Atualiza os dados de um pet existente"
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE - Deletar Pet",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pets/{{petId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pets", "{{petId}}"]
+            },
+            "description": "Remove um pet do sistema"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🎭 Mocking (Dados Falsos)",
+      "description": "Endpoints para geração de dados mockados - FUNCIONALIDADE PRINCIPAL",
+      "item": [
+        {
+          "name": "GET - Mocking Pets (Migrado)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/mocks/mockingpets",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "mocks", "mockingpets"]
+            },
+            "description": "⭐ ENDPOINT MIGRADO - Gera 100 pets mockados com dados falsos. Este endpoint foi migrado do router pets para o router mocks."
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Mocking Users (50 usuários)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/mocks/mockingusers",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "mocks", "mockingusers"]
+            },
+            "description": "⭐ ENDPOINT PRINCIPAL - Gera 50 usuários mockados com:\n- Senha 'coder123' encriptada\n- Role variando entre 'user' e 'admin'\n- Array de pets vazio\n- Formato compatível com MongoDB"
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Generate Data (Inserir na Base)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"users\": 5,\n  \"pets\": 10\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/mocks/generateData",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "mocks", "generateData"]
+            },
+            "description": "⭐ ENDPOINT PRINCIPAL - Gera e insere dados mockados na base de dados.\nParâmetros:\n- users: número de usuários para gerar\n- pets: número de pets para gerar\n\nOs dados gerados são inseridos diretamente na base de dados MongoDB."
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Generate Only Users",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"users\": 3,\n  \"pets\": 0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/mocks/generateData",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "mocks", "generateData"]
+            },
+            "description": "Gera e insere apenas usuários na base de dados (pets = 0)"
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Generate Only Pets",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"users\": 0,\n  \"pets\": 7\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/mocks/generateData",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "mocks", "generateData"]
+            },
+            "description": "Gera e insere apenas pets na base de dados (users = 0)"
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Generate Large Dataset",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"users\": 20,\n  \"pets\": 50\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/mocks/generateData",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "mocks", "generateData"]
+            },
+            "description": "Gera um conjunto maior de dados para testes de performance"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🧪 Testes de Validação",
+      "description": "Sequência de testes para validar todos os critérios do projeto",
+      "item": [
+        {
+          "name": "1️⃣ Testar Migração - Mockingpets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/mocks/mockingpets",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "mocks", "mockingpets"]
+            },
+            "description": "TESTE CRÍTICO: Verificar se o endpoint /mockingpets foi migrado corretamente para /api/mocks/mockingpets"
+          },
+          "response": []
+        },
+        {
+          "name": "2️⃣ Testar Geração - 50 Usuários",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/mocks/mockingusers",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "mocks", "mockingusers"]
+            },
+            "description": "TESTE CRÍTICO: Verificar se gera exatamente 50 usuários com senha encriptada, roles variáveis e pets vazios"
+          },
+          "response": []
+        },
+        {
+          "name": "3️⃣ Testar Inserção - Generate Data",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"users\": 2,\n  \"pets\": 3\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/mocks/generateData",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "mocks", "generateData"]
+            },
+            "description": "TESTE CRÍTICO: Verificar se o endpoint recebe parâmetros e insere dados na base"
+          },
+          "response": []
+        },
+        {
+          "name": "4️⃣ Verificar Usuários Inseridos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users"]
+            },
+            "description": "TESTE CRÍTICO: Verificar se os usuários foram inseridos na base e são acessíveis via GET"
+          },
+          "response": []
+        },
+        {
+          "name": "5️⃣ Verificar Pets Inseridos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pets",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pets"]
+            },
+            "description": "TESTE CRÍTICO: Verificar se os pets foram inseridos na base e são acessíveis via GET"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "⚠️ Testes de Erro",
+      "description": "Testes para validar tratamento de erros",
+      "item": [
+        {
+          "name": "GET - Usuário Inexistente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/users/000000000000000000000000",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users", "000000000000000000000000"]
+            },
+            "description": "Testa resposta para usuário inexistente (deve retornar 404)"
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Pet Inexistente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pets/000000000000000000000000",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pets", "000000000000000000000000"]
+            },
+            "description": "Testa resposta para pet inexistente (deve retornar 404)"
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Endpoint Inexistente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/inexistente",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "inexistente"]
+            },
+            "description": "Testa resposta para endpoint inexistente (deve retornar 404)"
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Parâmetros Inválidos Generate Data",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"users\": -1,\n  \"pets\": \"abc\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/mocks/generateData",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "mocks", "generateData"]
+            },
+            "description": "Testa validação de parâmetros inválidos (deve retornar 400)"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "description": "URL base do servidor (ajuste a porta se necessário)"
+    },
+    {
+      "key": "userId",
+      "value": "",
+      "description": "ID de um usuário específico para testes (será preenchido após criar/buscar usuário)"
+    },
+    {
+      "key": "petId",
+      "value": "",
+      "description": "ID de um pet específico para testes (será preenchido após criar/buscar pet)"
+    }
+  ]
+}
