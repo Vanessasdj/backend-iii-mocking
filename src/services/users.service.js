@@ -40,7 +40,9 @@ class UsersService {
 
   async updateUser(id, userData) {
     try {
-      const user = await User.findByIdAndUpdate(id, userData, { new: true });
+      const user = await User.findByIdAndUpdate(id, userData, {
+        new: true,
+      }).populate("pets");
       return user;
     } catch (error) {
       throw new Error(`Erro ao atualizar usuário: ${error.message}`);

@@ -1,0 +1,26 @@
+# Multi-stage Dockerfile para desenvolvimento e produção
+
+# Estágio base
+FROM node:18-alpine AS base
+WORKDIR /app
+COPY package*.json ./
+
+# Estágio de desenvolvimento
+FROM base AS development
+RUN npm install
+COPY . .
+EXPOSE 8080
+CMD ["npm", "run", "dev"]
+
+# Estágio de produção
+FROM base AS production
+RUN npm ci --only=production && npm cache clean --force
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nodejs -u 1001
+COPY --chown=nodejs:nodejs . .
+USER nodejs
+EXPOSE 8080
+ENV NODE_ENV=production
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD node healthcheck.js
+CMD ["npm", "start"]
